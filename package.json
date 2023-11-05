@@ -4,9 +4,12 @@
   "type": "module",
   "devDependencies": {
     "@turf/turf": "^6.5.0",
+    "@types/debug": "^4.1.10",
+    "@types/xml2js": "^0.4.13",
     "bun-types": "latest",
+    "debug": "^4.3.4",
     "prettier": "^3.0.3",
-    "query-fis-broker-wfs": "^2.0.0"
+    "xml2js": "^0.6.2"
   },
   "peerDependencies": {
     "typescript": "^5.0.0"
