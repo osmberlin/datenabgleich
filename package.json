@@ -3,8 +3,10 @@
   "module": "index.ts",
   "type": "module",
   "devDependencies": {
+    "@turf/turf": "^6.5.0",
     "bun-types": "latest",
     "prettier": "^3.0.3",
+    "query-fis-broker-wfs": "^2.0.0"
   },
   "peerDependencies": {
     "typescript": "^5.0.0"
