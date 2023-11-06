@@ -7,7 +7,7 @@ debug('Start')
 
 const geojson = (await Bun.file(fileFiltered).json()) as FilterGeojson
 
-const bufferedGeojson = bufferGeojson(geojson, 10)
+const bufferedGeojson = bufferGeojson(geojson, 6)
 
 const file = `${import.meta.dir}/data/officialDataBuffered.geojson`
 debug('Write', file)
