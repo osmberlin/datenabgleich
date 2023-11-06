@@ -1,7 +1,7 @@
 import { Config } from '../../types'
 
 export const config: Config = {
-  bbox: [386000, 5812000, 386000, 5813000],
+  // bbox: [386000, 5812000, 386000, 5813000],
   endpoint: 'https://gdi.berlin.de/services/wfs/fussgaengernetz',
   layer: 'fussgaengernetz:b_strassenelemente',
   allowedPropertyKeys: [
