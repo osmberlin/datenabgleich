@@ -1,5 +1,7 @@
 import createDebug from 'debug'
 
+export type WfsUrl = ReturnType<typeof createWfsUrl>
+
 export const createWfsUrl = (
   endpoint: string,
   layer: string,

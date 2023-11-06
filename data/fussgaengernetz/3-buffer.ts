@@ -1,11 +1,11 @@
 import createDebug from 'debug'
 import { bufferGeojson } from '../../utils/bufferGeojson'
-import { filterGeojson } from '../../utils/filterGeojson'
-import { fileFiltered } from './2-filter'
-import { config } from './config.const'
-const debug = createDebug('filter')
+import { FilterGeojson } from '../../utils/filterGeojson'
+import { fileFiltered } from './config.const'
+const debug = createDebug('buffer')
+debug('Start')
 
-const geojson = (await Bun.file(fileFiltered).json()) as Awaited<ReturnType<typeof filterGeojson>>
+const geojson = (await Bun.file(fileFiltered).json()) as FilterGeojson
 
 const bufferedGeojson = bufferGeojson(geojson, 10)
 

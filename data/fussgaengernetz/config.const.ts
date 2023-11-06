@@ -23,3 +23,9 @@ export const config: Config = {
   ],
   featuresFilter: { STRKLASSE: 'Q' },
 }
+
+export const fileRaw = `${import.meta.dir}/data/officialDataRaw.geojson`
+
+export const fileFiltered = `${import.meta.dir}/data/officialDataFiltered.geojson`
+
+export const fileBuffered = `${import.meta.dir}/data/officialDataBuffered.geojson`

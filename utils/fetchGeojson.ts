@@ -1,10 +1,12 @@
 import createDebug from 'debug'
 import { FeatureCollection } from '../types'
-import { createWfsUrl } from './createWfsUrl'
+import { WfsUrl } from './createWfsUrl'
 
-export const fetchGeojson = async (wfsUrl: ReturnType<typeof createWfsUrl>) => {
-  const debug = createDebug('pull')
-  debug('Fetching', wfsUrl)
+export type FetchGeojson = Awaited<ReturnType<typeof fetchGeojson>>
+
+export const fetchGeojson = async (wfsUrl: WfsUrl) => {
+  const debug = createDebug('fetchGeojson')
+  debug('Fetching', wfsUrl.href)
 
   const userAgend = 'https://github.com/osmberlin/datenabgleich/'
   const response = await fetch(wfsUrl, {
