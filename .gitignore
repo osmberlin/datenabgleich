@@ -178,3 +178,4 @@ dist
 **/temp/**.*
 officialDataRaw.geojson
 officialDataFiltered.geojson
+officialDataBuffered.geojson
