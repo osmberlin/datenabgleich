@@ -1,6 +1,8 @@
 import createDebug from 'debug'
+import { FeatureCollection } from '../types'
+import { createWfsUrl } from './createWfsUrl'
 
-export const fetchXml = async (wfsUrl: URL) => {
+export const fetchGeojson = async (wfsUrl: ReturnType<typeof createWfsUrl>) => {
   const debug = createDebug('pull')
   debug('Fetching', wfsUrl)
 
@@ -8,10 +10,7 @@ export const fetchXml = async (wfsUrl: URL) => {
   const response = await fetch(wfsUrl, {
     mode: 'cors',
     redirect: 'follow',
-    headers: {
-      'User-Agent': userAgend,
-      Accept: 'text/xml; subtype=gml/3.2.1',
-    },
+    headers: { 'User-Agent': userAgend },
   })
 
   if (!response.ok) {
@@ -19,8 +18,9 @@ export const fetchXml = async (wfsUrl: URL) => {
     throw new Error(response.statusText)
   }
 
-  const xmlText = await response.text()
-  debug('Success')
+  const jsonText = await response.text()
+  const json = (await JSON.parse(jsonText)) as FeatureCollection
+  debug('Success', json?.features?.length, 'features')
 
-  return xmlText
+  return json
 }

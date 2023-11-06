@@ -1,15 +1,32 @@
-import { createGeoJson } from './createGeoJson'
+import * as turf from '@turf/turf'
+import { fetchGeojson } from './fetchGeojson'
+
+export type AllowedPropertyKeys = string[]
+export type FeaturesFilter = { [key: string]: string }
 
 export const filterGeojson = (
-  geojson: ReturnType<typeof createGeoJson>,
-  keyValueFilter: { [key: string]: string },
+  geojson: Awaited<ReturnType<typeof fetchGeojson>>,
+  allowedPropertyKeys: AllowedPropertyKeys,
+  featuresFilter: FeaturesFilter,
 ) => {
-  const [filterKey, filterValue] = Object.entries(keyValueFilter)[0]
-  const filteredFeatures = geojson.filter((feature) => {
-    Object.entries(feature.properties).find(([key, value]) => {
-      key.toLowerCase() === filterKey.toLowerCase() &&
-        value.toLowerCase() === filterValue.toLowerCase()
+  const filterKey = Object.keys(featuresFilter).at(0)!.toLowerCase()
+  const filterValue = Object.values(featuresFilter).at(0)!.toLowerCase()
+  allowedPropertyKeys = allowedPropertyKeys.map((p) => p.toLowerCase())
+
+  const cleanedFeatures = geojson.features.map((feature) => {
+    const filteredProperties = Object.fromEntries(
+      Object.entries(feature.properties as Record<string, string | number | null>).filter(
+        ([key, _]) => allowedPropertyKeys.includes(key.toLowerCase()),
+      ),
+    )
+    return { ...feature, properties: filteredProperties }
+  })
+
+  const filteredFeatures = cleanedFeatures.filter((feature) => {
+    return Object.entries(feature.properties).some(([key, value]) => {
+      return key.toLowerCase() === filterKey && String(value).toLowerCase() === filterValue
     })
   })
-  return filteredFeatures
+
+  return turf.featureCollection(filteredFeatures)
 }

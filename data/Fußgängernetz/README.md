@@ -14,6 +14,7 @@
 * Documentation https://fbinter.stadt-berlin.de/fb_daten/beschreibung/datenformatbeschreibung/Datenformatbeschreibung_Fussgaengernetz.pdf
 * URLs https://gdi.berlin.de/geonetwork/srv/ger/catalog.search#/metadata/f1995e5e-9930-3184-a9a4-136b59481f36
 * WFS GetCapabilities https://gdi.berlin.de/services/wfs/fussgaengernetz?REQUEST=GetCapabilities&SERVICE=wfs
+* Full example `https://gdi.berlin.de/services/wfs/fussgaengernetz?SERVICE=WFS&REQUEST=GetFeature&VERSION=2.0.0&TYPENAMES=fussgaengernetz:b_strassenelemente&STARTINDEX=0&COUNT=1&SRSNAME=urn:ogc:def:crs:EPSG::4326`
 
 ## Lizenz
 

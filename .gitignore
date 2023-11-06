@@ -175,6 +175,6 @@ dist
 .DS_Store
 
 # data-files
-officialDataRaw.xml
-officialDataRaw.json
-officialDataFull.geojson
+**/temp/**.*
+officialDataRaw.geojson
+officialDataFiltered.geojson
