@@ -174,3 +174,7 @@ dist
 # Finder (MacOS) folder config
 .DS_Store
 
+# data-files
+officialDataRaw.xml
+officialDataRaw.json
+officialDataFull.geojson
