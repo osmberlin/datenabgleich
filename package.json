@@ -8,6 +8,7 @@
     "@types/debug": "^4.1.10",
     "bun-types": "latest",
     "debug": "^4.3.4",
+    "osmtogeojson": "^3.0.0-beta.5",
     "prettier": "^3.0.3"
   },
   "peerDependencies": {

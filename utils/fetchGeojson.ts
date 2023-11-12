@@ -1,5 +1,5 @@
 import createDebug from 'debug'
-import { FeatureCollection } from '../types'
+import { FeatureCollection } from './types'
 import { WfsUrl } from './createWfsUrl'
 
 export type FetchGeojson = Awaited<ReturnType<typeof fetchGeojson>>

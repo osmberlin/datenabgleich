@@ -179,3 +179,5 @@ dist
 officialDataRaw.geojson
 officialDataFiltered.geojson
 officialDataBuffered.geojson
+osmDataRaw.geojson
+officialDataBbox.geojson

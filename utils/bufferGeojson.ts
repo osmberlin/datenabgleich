@@ -1,6 +1,6 @@
 import * as turf from '@turf/turf'
 import createDebug from 'debug'
-import { filterGeojson } from './filterGeojson'
+import { filterGeojsonByProperty } from './filterGeojsonByProperty'
 
 export type Buffer =
   /** Buffer in Meter (m) */
@@ -8,7 +8,7 @@ export type Buffer =
 export type BufferGeojson = Awaited<ReturnType<typeof bufferGeojson>>
 
 export const bufferGeojson = (
-  geojson: Awaited<ReturnType<typeof filterGeojson>>,
+  geojson: Awaited<ReturnType<typeof filterGeojsonByProperty>>,
   buffer: Buffer,
 ) => {
   const debug = createDebug('bufferGeojson')

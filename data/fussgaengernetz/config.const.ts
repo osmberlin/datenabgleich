@@ -1,6 +1,6 @@
-import { Config } from '../../types'
+import { Bbox, ConfigOfficialData } from '../../utils/types'
 
-export const config: Config = {
+export const configOfficialData: ConfigOfficialData = {
   // bbox: [386000, 5812000, 386000, 5813000],
   endpoint: 'https://gdi.berlin.de/services/wfs/fussgaengernetz',
   layer: 'fussgaengernetz:b_strassenelemente',
@@ -21,11 +21,28 @@ export const config: Config = {
     // Datenquelle 1. „bwbf“: Berlinweite Straßenbefahrung 2. „rbsv“: Regionales Bezugssystem 3. „vmse“: Verkehrsmanagementsystem EDV Dr. Haller 4. „VMZ“: VMZ Betreibergesellschaft
     'HERKUNFT',
   ],
+  bufferMeters: 3,
   featuresFilter: { STRKLASSE: 'Q' },
+  minLengthMeters: 2,
 }
 
-export const fileRaw = `${import.meta.dir}/data/officialDataRaw.geojson`
+export const configOsmData = {
+  overpassConditions: `node["highway"="crossing"]({{bbox}})`,
+  // Take the bbox from `officialDataBbox.geojson`
+  geoJsonBbox: [13.09020528, 52.34037715, 13.74161157, 52.66000148] satisfies Bbox,
+}
 
-export const fileFiltered = `${import.meta.dir}/data/officialDataFiltered.geojson`
+export const fileOfficialDataRaw = `${import.meta.dir}/data/officialDataRaw.geojson`
 
-export const fileBuffered = `${import.meta.dir}/data/officialDataBuffered.geojson`
+export const fileOfficialDataFiltered = `${import.meta.dir}/data/officialDataFiltered.geojson`
+
+export const fileOfficialDataBuffered = `${import.meta.dir}/data/officialDataBuffered.geojson`
+export const fileOfficialDataBbox = `${import.meta.dir}/data/officialDataBbox.geojson`
+
+export const fileOsmDataRaw = `${import.meta.dir}/data/osmDataRaw.geojson`
+export const fileMatchedOsmDataWithoutOfficial = `${
+  import.meta.dir
+}/data/matchedOsmDataWithoutOfficial.geojson`
+export const fileMatchedOfficialDataWithoutOsm = `${
+  import.meta.dir
+}/data/matchedOfficialDataWithoutOsm.geojson`

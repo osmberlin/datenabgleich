@@ -2,14 +2,33 @@ import * as turf from '@turf/turf'
 
 // OUR OWN ===
 export type FeatureCollection = ReturnType<typeof turf.featureCollection>
+export type Bbox = ReturnType<typeof turf.bbox>
 
-export type Config = {
+type GeoJsonPoint = {
+  type: 'Point'
+  coordinates: [number, number]
+}
+
+type GeoJsonPointFeature = {
+  type: 'Feature'
+  geometry: GeoJsonPoint
+  properties: Record<string, any>
+}
+
+export type GeoJsonPointFeatureCollection = {
+  type: 'FeatureCollection'
+  features: GeoJsonPointFeature[]
+}
+
+export type ConfigOfficialData = {
   bbox?: number[]
   endpoint: string
   layer: string
   allowedPropertyKeys: AllowedPropertyKeys
+  bufferMeters: number
   /** @desc All features will be filterd to only include features that have a property of `key=value` */
   featuresFilter: FeaturesFilter
+  minLengthMeters: number
 }
 
 // BUN specific ===

@@ -4,9 +4,9 @@ import { fetchGeojson } from './fetchGeojson'
 
 export type AllowedPropertyKeys = string[]
 export type FeaturesFilter = { [key: string]: string }
-export type FilterGeojson = Awaited<ReturnType<typeof filterGeojson>>
+export type FilterGeojson = Awaited<ReturnType<typeof filterGeojsonByProperty>>
 
-export const filterGeojson = (
+export const filterGeojsonByProperty = (
   geojson: Awaited<ReturnType<typeof fetchGeojson>>,
   allowedPropertyKeys: AllowedPropertyKeys,
   featuresFilter: FeaturesFilter,
@@ -15,7 +15,8 @@ export const filterGeojson = (
   const filterValue = Object.values(featuresFilter).at(0)!.toLowerCase()
   allowedPropertyKeys = allowedPropertyKeys.map((p) => p.toLowerCase())
 
-  const debug = createDebug('filterGeojson')
+  const debug = createDebug('filterGeojsonByProperty')
+  const initialCount = geojson.features.length
   debug('Config', { filterKey, filterValue, allowedPropertyKeys })
 
   const cleanedFeatures = geojson.features.map((feature) => {
@@ -33,7 +34,13 @@ export const filterGeojson = (
     })
   })
 
-  debug('Success', filteredFeatures.length, 'features')
+  debug(
+    'Success',
+    filteredFeatures.length,
+    'features',
+    initialCount - filteredFeatures.length,
+    'removed',
+  )
 
   return turf.featureCollection(filteredFeatures)
 }
